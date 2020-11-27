@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Oil } from './product';
 
 @Component({
   selector: 'app-product-list',
@@ -7,13 +8,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductListComponent implements OnInit {
 
-  oil = {
-    "name":"Aceite de Manzanilla",
-    "type": "Simple",
-    "price": 200,
-    "stock":5,
-    "image": "assets/image/manzanilla.jpg"
-  };
+  oils: Oil[] = [{
+    name: 'Aceite de Manzanilla',
+    type: 'Simple',
+    price: 200,
+    stock: 5,
+    image: 'assets/image/manzanilla.jpg',
+    clearance: false
+  },
+    {
+      name: 'Aceite de Eucalipto',
+      type: 'Simple',
+      price: 200,
+      stock: 5,
+      image: 'assets/image/eucalipto.jpg',
+      clearance: true
+    }, {
+      name: 'Aceite Anti-Stress',
+      type: 'Blend',
+      price: 400,
+      stock: 0,
+      image: 'assets/image/anti-stress.jpg',
+      clearance: false
+    }];
 
   constructor() { }
 

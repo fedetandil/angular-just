@@ -9,12 +9,13 @@
   </tr>
   </thead>
   <tbody>
-  <tr>
+  <tr *ngFor="let oil of oils" [ngClass]="{'clearance': oil.clearance}">
     <td scope="row"><img [src]="oil.image" [alt]="oil.name"></td>
     <td scope="row" class="td-text">{{oil.name}}</td>
     <td scope="row" class="td-text">{{oil.type}}</td>
-    <td scope="row" class="td-text">{{oil.price}}</td>
-    <td scope="row" class="td-text">{{oil.stock}}</td>
+    <td scope="row" class="td-text">{{oil.price | currency}}</td>
+    <td scope="row" class="td-text"><span class="badge badge-warning" *ngIf="oil.stock==0;else elseBlock">SIN STOCK</span></td>
+    <ng-template #elseBlock>{{oil.stock}}</ng-template>
   </tr>
   </tbody>
 </table>
