@@ -7,6 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductListComponent implements OnInit {
 
+  oil = {
+    "name":"Aceite de Manzanilla",
+    "type": "Simple",
+    "price": 200,
+    "stock":5,
+    "image": "assets/image/manzanilla.jpg"
+  };
+
   constructor() { }
 
   ngOnInit(): void {
