@@ -5,4 +5,5 @@ export interface Oil {
   stock: number;
   image: string;
   clearance: boolean;
+  quantity: number;
 }

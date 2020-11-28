@@ -1,4 +1,4 @@
-<table class="table table-hover">
+<table class="table table-hover text-center">
   <thead>
   <tr>
     <th scope="col">Imagen</th>
@@ -6,16 +6,23 @@
     <th scope="col">Tipo</th>
     <th scope="col">Precio</th>
     <th scope="col">Stock</th>
+    <th scope="col">Quantity</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let oil of oils" [ngClass]="{'clearance': oil.clearance}">
-    <td scope="row"><img [src]="oil.image" [alt]="oil.name"></td>
+    <td scope="row"><img [src]="oil.image" [alt]="oil.name" class="img-thumbnail"></td>
     <td scope="row" class="td-text">{{oil.name}}</td>
     <td scope="row" class="td-text">{{oil.type}}</td>
     <td scope="row" class="td-text">{{oil.price | currency}}</td>
     <td scope="row" class="td-text"><span class="badge badge-warning" *ngIf="oil.stock==0;else elseBlock">SIN STOCK</span></td>
     <ng-template #elseBlock>{{oil.stock}}</ng-template>
+    <td><button class="btn btn-dark btn-sm" (click)="downQuantity(oil)">-</button>
+
+
+        <input class="text-center" type="number" [(ngModel)]="oil.quantity" (keyup)="changeQuantity($event, oil)">
+
+      <button class="btn btn-dark btn-sm" (click)="upQuantity(oil)">+</button></td>
   </tr>
   </tbody>
 </table>

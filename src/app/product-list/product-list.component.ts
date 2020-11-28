@@ -14,7 +14,8 @@ export class ProductListComponent implements OnInit {
     price: 200,
     stock: 5,
     image: 'assets/image/manzanilla.jpg',
-    clearance: false
+    clearance: false,
+    quantity: 0
   },
     {
       name: 'Aceite de Eucalipto',
@@ -22,19 +23,43 @@ export class ProductListComponent implements OnInit {
       price: 200,
       stock: 5,
       image: 'assets/image/eucalipto.jpg',
-      clearance: true
+      clearance: true,
+      quantity: 0
     }, {
       name: 'Aceite Anti-Stress',
       type: 'Blend',
       price: 400,
       stock: 0,
       image: 'assets/image/anti-stress.jpg',
-      clearance: false
+      clearance: false,
+      quantity: 0
     }];
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  upQuantity(oil: Oil): void{
+    if (oil.stock > oil.quantity){
+      oil.quantity++;
+    }
+  }
+
+  downQuantity(oil: Oil): void{
+    if (oil.quantity > 0){
+      oil.quantity--;
+    }
+  }
+
+  changeQuantity(event, oil: Oil): void{
+    if (oil.quantity > oil.stock){
+      oil.quantity = oil.stock;
+    }else{
+    if (oil.quantity < 0){
+      oil.quantity = 0;
+    }
+    }
   }
 
 }

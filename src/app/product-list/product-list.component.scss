@@ -5,12 +5,12 @@ img{
 td{
   height: 100px;
   width: 100px;
+  vertical-align: middle;
 }
 
-.td-text{
-padding-top: 35px;
+input{
+  max-width: 40px;
 }
-
 .clearance{
   background-color: lightgreen;
   border: 2px solid green;
