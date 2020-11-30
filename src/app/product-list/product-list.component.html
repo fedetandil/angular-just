@@ -13,16 +13,16 @@
   <tbody>
   <tr *ngFor="let oil of oils" [ngClass]="{'clearance': oil.clearance}">
     <td scope="row"><img [src]="oil.image" [alt]="oil.name" class="img-thumbnail"></td>
-    <td scope="row" class="td-text">{{oil.name}}</td>
-    <td scope="row" class="td-text">{{oil.type}}</td>
-    <td scope="row" class="td-text">{{oil.price | currency}}</td>
-    <td scope="row" class="td-text"><span class="badge badge-warning" *ngIf="oil.stock==0;else elseBlock">SIN STOCK</span></td>
+    <td scope="row">{{oil.name}}</td>
+    <td scope="row">{{oil.type}}</td>
+    <td scope="row">{{oil.price | currency}}</td>
+    <td scope="row"><span class="badge badge-warning" *ngIf="oil.stock==0;else elseBlock">SIN STOCK</span></td>
     <ng-template #elseBlock>{{oil.stock}}</ng-template>
     <td>
       <app-input-integer [(quantity)]="oil.quantity" [max]="oil.stock" *ngIf="oil.stock" (maxReached)="maxReached($event)"></app-input-integer>
     </td>
     <td>
-      <button class="btn btn-primary btn-sm" (click)="addToCart(oil)" *ngIf="oil.stock">Comprar</button>
+      <button class="btn btn-dark btn-sm" (click)="addToCart(oil)" *ngIf="oil.stock">Comprar</button>
     </td>
   </tr>
   </tbody>
