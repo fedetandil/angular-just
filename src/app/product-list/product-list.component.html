@@ -17,12 +17,7 @@
     <td scope="row" class="td-text">{{oil.price | currency}}</td>
     <td scope="row" class="td-text"><span class="badge badge-warning" *ngIf="oil.stock==0;else elseBlock">SIN STOCK</span></td>
     <ng-template #elseBlock>{{oil.stock}}</ng-template>
-    <td><button class="btn btn-dark btn-sm" (click)="downQuantity(oil)">-</button>
-
-
-        <input class="text-center" type="number" [(ngModel)]="oil.quantity" (keyup)="changeQuantity($event, oil)">
-
-      <button class="btn btn-dark btn-sm" (click)="upQuantity(oil)">+</button></td>
+    <td><app-input-integer [(quantity)]="oil.quantity" [max]="oil.stock" *ngIf="oil.stock" (maxReached)="maxReached($event)"></app-input-integer></td>
   </tr>
   </tbody>
 </table>
