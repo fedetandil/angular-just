@@ -1,22 +1,26 @@
 import { Injectable } from '@angular/core';
 import {Oil} from './product-list/product';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OilCartService {
 
-  cartList: Oil[] = [];
+
+  private _cartList: Oil[] = [];
+  cartList: BehaviorSubject<Oil[]> = new BehaviorSubject([]);
+
 
   constructor() { }
 
   addToCart(oil: Oil): void{
-    const item: Oil = this.cartList.find((v1) => v1.name === oil.name);
+    const item: Oil = this._cartList.find((v1) => v1.name === oil.name);
     if (!item) {
-      this.cartList.push({...oil});
+      this._cartList.push({...oil});
     }else{
       item.quantity += oil.quantity;
     }
-    console.log(this.cartList);
+    this.cartList.next(this._cartList);
   }
 }

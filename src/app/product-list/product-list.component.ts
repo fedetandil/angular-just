@@ -44,10 +44,9 @@ export class ProductListComponent implements OnInit {
   addToCart(oil: Oil): void{
     if (oil.quantity > 0 && oil.quantity <= oil.stock){
       oil.stock -= oil.quantity;
+      this.cart.addToCart(oil);
       oil.quantity = 0;
     }
-
-    this.cart.addToCart(oil);
   }
 
   maxReached(m: string): void{
