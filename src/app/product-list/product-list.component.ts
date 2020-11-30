@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Oil } from './product';
+import {OilCartService} from '../oil-cart.service';
 
 @Component({
   selector: 'app-product-list',
@@ -35,9 +36,18 @@ export class ProductListComponent implements OnInit {
       quantity: 0
     }];
 
-  constructor() { }
+  constructor(private cart: OilCartService) { }
 
   ngOnInit(): void {
+  }
+
+  addToCart(oil: Oil): void{
+    if (oil.quantity > 0 && oil.quantity <= oil.stock){
+      oil.stock -= oil.quantity;
+      oil.quantity = 0;
+    }
+
+    this.cart.addToCart(oil);
   }
 
   maxReached(m: string): void{

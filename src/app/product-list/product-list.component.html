@@ -7,6 +7,7 @@
     <th scope="col">Precio</th>
     <th scope="col">Stock</th>
     <th scope="col">Quantity</th>
+    <th scope="col">Buy</th>
   </tr>
   </thead>
   <tbody>
@@ -17,7 +18,12 @@
     <td scope="row" class="td-text">{{oil.price | currency}}</td>
     <td scope="row" class="td-text"><span class="badge badge-warning" *ngIf="oil.stock==0;else elseBlock">SIN STOCK</span></td>
     <ng-template #elseBlock>{{oil.stock}}</ng-template>
-    <td><app-input-integer [(quantity)]="oil.quantity" [max]="oil.stock" *ngIf="oil.stock" (maxReached)="maxReached($event)"></app-input-integer></td>
+    <td>
+      <app-input-integer [(quantity)]="oil.quantity" [max]="oil.stock" *ngIf="oil.stock" (maxReached)="maxReached($event)"></app-input-integer>
+    </td>
+    <td>
+      <button class="btn btn-primary btn-sm" (click)="addToCart(oil)" *ngIf="oil.stock">Comprar</button>
+    </td>
   </tr>
   </tbody>
 </table>
